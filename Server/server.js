@@ -187,7 +187,8 @@ app.use(function (req, res, next) {
         })
     });
     app.get('/api/tuan', (req, res) => {
-        let {offset = 0, limit = 5} = req.body;
+        let {offset = 0, limit = 5} = url.parse(req.url,true).query;
+        console.log(req.body);
         if (isNaN(offset) || isNaN(limit)) {
             res.send({
                 code: 100,
@@ -198,10 +199,11 @@ app.use(function (req, res, next) {
         }
         if (parseFloat(offset) + parseFloat(limit) >= parseFloat(flashSales.count) - 1) {
             isMore = 0;
-            
+
         } else {
             isMore = 1;
         }
+        console.log(isMore,code,offset,limit);
         res.send({
             code,
             data: {
