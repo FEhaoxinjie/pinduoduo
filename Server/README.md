@@ -3,7 +3,7 @@
 
 url:'/api/login'
 
-method:'get'
+method:'post'
 
 data:{
 
