@@ -8,7 +8,6 @@ let url = require('url');
 function getUserList(cb) {
     fs.readFile('./mock/user.json', 'utf-8', (err, data) => {
         if (err) {
-            console.log('err');
             return;
         }
         cb(data);
@@ -19,7 +18,6 @@ function getUserList(cb) {
 function addUser(user, cb) {
     fs.readFile('./mock/user.json', 'utf-8', (err, data) => {
         let userList = JSON.parse(data);
-        console.log('hi')
         let isReg = userList.some(item => {
             return item.tel == user.tel
         });
@@ -33,7 +31,6 @@ function addUser(user, cb) {
                 address: ''
             });
             fs.writeFile('./mock/user.json', JSON.stringify(userList), function (err) {
-                console.log(err);
                 if (err) {
                     cb({
                         code: 100,
@@ -55,6 +52,30 @@ function addUser(user, cb) {
     })
 }
 
+//获取用户购物车列表
+function getCartList(cb) {
+    fs.readFile('./mock/cart.json', 'utf-8', (err, data) => {
+        if (err) {
+            return;
+        }
+        cb(data);
+    })
+}
+
+//添加到购物车列表
+function addCart(cart, userCart, cb) {
+    fs.writeFile('./mock/cart.json', JSON.stringify(cart), function (err) {
+        if (err) {
+            cb && cb({
+                code: 100,
+                error: '添加失败，请稍后重试。'
+            })
+        } else {
+            cb && cb(userCart)
+        }
+    })
+}
+
 let app = express();
 app.use(bodyParser.json());
 app.use(session({
@@ -63,48 +84,110 @@ app.use(session({
     secret: 'jumei'
 }));
 
-app.post('/api/login', (req, res) => {
-    let {tel, password} = url.parse(req.url, true).query;
-    getUserList(userList => {
-        userList = JSON.parse(userList);
-        let user = userList.find(item => {
-            return item.tel == tel && item.password == password;
+
+app.use(function (req, res, next) {
+    //允许的来源
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    //允许客户端请求的方法
+    res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,PUT,DELETE');
+    //允许客户端发送的请求头
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    //允许客户端发送Cookie
+    res.header('Access-Control-Allow-Credentials', 'true');
+    //当客户端向服务器发post跨域的时候，会先发送options请求。如果服务器返回的响应头Access-Control-Allow-Methods里有POST的话，才会再次发送POST
+    if (req.method == 'OPTIONS') {
+        res.end()
+    } else {
+        next();
+    }
+    app.post('/api/login', (req, res) => {
+        let {tel, password} = url.parse(req.url, true).query;
+        getUserList(userList => {
+            userList = JSON.parse(userList);
+            let user = userList.find(item => {
+                return item.tel == tel && item.password == password;
+            });
+            if (user) {
+                res.send({
+                    code: 200, data: {
+                        tel,
+                        userName: user.userName,
+                        address: user.address
+                    }
+                })
+            } else {
+                res.send({
+                    code: 100,
+                    error: '用户名或密码错误！'
+                })
+            }
         });
-        if (user) {
-            res.send({
-                code: 200, data: {
-                    tel,
-                    userName: user.userName,
-                    address: user.address
+    });
+    app.post('/api/signin', (req, res) => {
+        let {tel, password} = url.parse(req.url, true).query;
+        getUserList(userList => {
+            userList = JSON.parse(userList);
+            let user = userList.some(item => {
+                return item.tel == tel && item.password == password;
+            });
+            if (user) {
+                res.send({
+                    code: 100,
+                    error: '该手机号已经被注册！'
+                })
+            } else {
+                addUser({tel, password}, data => {
+                    res.send(data);
+                })
+            }
+        });
+    });
+    app.post('/api/cartlist', (req, res) => {
+        let cart = req.body;
+        let userCart;
+        getCartList(data => {
+            let cartList = JSON.parse(data);
+            cartList = cartList.map(item => {
+                if (cart.tel == item.tel) {
+                    return {
+                        tel: cart.tel,
+                        cartList: cart.data
+                    };
+                } else {
+                    return item;
                 }
-            })
-        } else {
-            res.send({
-                code: 100,
-                error: '用户名或密码错误！'
-            })
-        }
-    });
-});
-app.post('/api/signin', (req, res) => {
-    let {tel, password} = url.parse(req.url, true).query;
-    getUserList(userList => {
-        userList = JSON.parse(userList);
-        let user = userList.some(item => {
-            return item.tel == tel && item.password == password;
+            });
+            userCart = cartList.find(item => item.tel == cartList.tel);
+            if (!userCart) {
+                userCart = {
+                    code: 200,
+                    cartList: []
+                }
+            }
+            console.log(userCart);
+            addCart(cartList, {code: 200, data: userCart.cartList}, data => res.send(data))
         });
-        if (user) {
-            res.send({
-                code: 100,
-                error: '该手机号已经被注册！'
-            })
-        } else {
-            addUser({tel,password},data=>{
-                res.send(data);
-            })
-        }
+
     });
+    app.get('/api/cartlist', (req, res) => {
+        let query = req.body;
+        getCartList(data => {
+            let cartList = JSON.stringify(data);
+            let userCart = cartList.find(item => {
+                return item.tel = query.tel
+            })
+            if(!userCart){
+                userCart={
+                    tel:query.tel,
+                    data:[]
+                }
+            }
+            res.send({code:200,data:userCart.cartList})
+        })
+    })
 });
+
+
 app.listen(3000, () => {
-    console.log('ok')
+    console.log('Server is running At Port:3000')
 });
