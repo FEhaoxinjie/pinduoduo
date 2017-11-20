@@ -1,0 +1,47 @@
+#### 后台接口
+**登录**
+url:'/api/login'
+method:'get'
+data:{
+    tel:13333333333,
+    password:'test'
+}
+返回的数据
+成功：
+{
+    code:200,
+    data:{
+        userName:'test',
+        tel:13333333333,
+        address:'北京市昌平区回龙观东大街珠峰培训'
+    }
+}
+失败：
+{
+    code:100,
+    error:'用户名或密码错误'
+}
+
+**注册**
+url:'/api/signin'
+method:'post',
+data:{
+    tel:13333333333,
+    password:'test'
+}
+
+返回的数据
+成功：
+{
+    code:200,
+    data:{
+        userName:'test',
+        tel:13333333333,
+        address:'北京市昌平区回龙观东大街珠峰培训'
+    }
+}
+失败：
+{
+    code:100,
+    error:'该手机号已经被注册！'
+}
