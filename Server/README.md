@@ -160,3 +160,69 @@ data:{
 
 }
 
+**获取拼团商品列表**
+
+url:'/api/tuan',
+
+method:'get',
+
+data:{
+
+    offset:0,
+    limit:5
+
+}
+
+返回的数据：
+
+成功：
+
+{
+
+code:200,
+
+data:{
+
+    isMore:1, //isMore的值为1代表还可以继续获取数据，0代表不能获取更多数据了
+    
+    list: [
+          
+          {
+          
+                      id: 1,
+                      url: 'http://******',
+                      comments: 345,
+                      title: '【手机专享】40片装暖贴暖宝宝贴暖身贴发热贴',
+                      price: {
+                          prezhe: 45.00,
+                          afterzhe: 42.00,
+                          tuan: 35.00
+                      }
+                  },
+                  
+                  {
+                      id: 2,
+                      url: 'http:/******',
+                      comments: 345,
+                      title: '【手机专享】40片装暖贴暖宝宝贴暖身贴发热贴',
+                      price: {
+                          prezhe: 45.00,
+                          afterzhe: 42.00,
+                          tuan: 35.00
+                      }
+                  }
+                  
+          ]
+
+}
+
+}
+
+失败：
+{
+
+    code:100,
+    
+    error:'请求参数错误！'
+
+}

@@ -3,6 +3,7 @@ let fs = require('fs');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 let url = require('url');
+let flashSales = require('./mock/flashSales');
 
 //获取用户列表
 function getUserList(cb) {
@@ -176,15 +177,40 @@ app.use(function (req, res, next) {
             let userCart = cartList.find(item => {
                 return item.tel = query.tel
             })
-            if(!userCart){
-                userCart={
-                    tel:query.tel,
-                    data:[]
+            if (!userCart) {
+                userCart = {
+                    tel: query.tel,
+                    data: []
                 }
             }
-            res.send({code:200,data:userCart.cartList})
+            res.send({code: 200, data: userCart.cartList})
+        })
+    });
+    app.get('/api/tuan', (req, res) => {
+        let {offset = 0, limit = 5} = req.body;
+        if (isNaN(offset) || isNaN(limit)) {
+            res.send({
+                code: 100,
+                error: '请求参数错误！'
+            })
+        } else {
+            code = 200;
+        }
+        if (parseFloat(offset) + parseFloat(limit) >= parseFloat(flashSales.count) - 1) {
+            isMore = 0;
+            
+        } else {
+            isMore = 1;
+        }
+        res.send({
+            code,
+            data: {
+                isMore,
+                list: flashSales.list.slice(parseFloat(offset), parseFloat(limit))
+            }
         })
     })
+
 });
 
 
