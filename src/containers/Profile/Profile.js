@@ -9,7 +9,7 @@ export default class Profile extends Component{
                         <i className="iconfont icon-houtui back"/>
                     </a>
                     <span>我的聚美</span>
-                    <i className="iconfont icon-shouye home "/>
+                    <i className="iconfont icon-shouye1 home"/>
                 </div>
                 <div className="wrapper">
                     <div className="user-unlogin">
@@ -97,7 +97,7 @@ export default class Profile extends Component{
                                 <span>退出登录</span>
                                 <i className="iconfont icon-jiantou rightArrow"/>
                             </li>
-                            <li>
+                            <li className="cancel">
                                 <i className="iconfont icon-rexiandianhua"/>
                                 <span>400-123-8888</span>
                                 <i className="iconfont icon-jiantou rightArrow"/>
@@ -105,7 +105,7 @@ export default class Profile extends Component{
                         </ul>
                     </div>
                     <div className="hint">
-                        活动期间24小时服务热线400-123-8888（免长途费)
+                        活动期间24小时服务热线400-123-8888（免长途费)<br/>
                         拨打前请记录您的UID 0
                     </div>
                 </div>
