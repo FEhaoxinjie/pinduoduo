@@ -8,7 +8,9 @@
     <script>
         //计算文字大小
         function compuntedFontSize() {
-
+            let clientW=document.documentElement.clientWidth||document.body.clientWidth;
+           document.documentElement.style.fontSize=clientW/320*100 +'px';
+            console.log(document.documentElement.style.fontSize);
         }
 
         compuntedFontSize();
