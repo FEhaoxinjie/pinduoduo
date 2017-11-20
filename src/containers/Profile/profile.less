@@ -1,0 +1,200 @@
+@H:.38rem;
+.profile {
+  width: 3.2rem;
+  .head-title {
+    position: relative;
+    top:0;
+    width: 3.2rem;
+    height: @H;
+    line-height: @H;
+    background: #ed145b;
+    font-size: .14rem;
+    color: white;
+    text-align: center;
+    .link-back {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: .80rem;
+      height: @H;
+      line-height: @H;
+      .back {
+        position: absolute;
+        font-size: .30rem;
+        left: 0;
+        top: 0;
+      }
+    }
+    span {
+      display: inline-block;
+    }
+    .home {
+      position: absolute;
+      right: .05rem;
+      top: 0;
+      font-size: .22rem;
+    }
+  }
+  .wrapper{
+    position: fixed;
+    bottom: .49rem;
+    top: .38rem;
+    font-size: .18rem;
+    overflow-y: scroll;
+    .user-unlogin {
+      padding-top: .1rem;
+      box-sizing: border-box;
+      background: linear-gradient(-204deg, #FD465F 0, #FC5E9F 100%);
+      .userImg {
+        display: block;
+        margin: 0 auto;
+        width: .6rem;
+        height: .6rem;
+        background-size: .6rem .6rem;
+        /*为什么不加image就不行了，背景图片大小徒河确定*/
+        background-image: url("https://f5.jmstatic.com/static_account/dist/v1.0.31528/images/mobile_usercenter/myjumei/noportrait.png");
+      }
+      .operation {
+        margin: 0 .5rem;
+        .operationItem {
+          width: 100%;
+          padding:.1rem;
+          text-align: center;
+          .signUp, .login {
+            display: inline-block;
+            width: .95rem;
+            height: .25rem;
+            color: white;
+          }
+          span {
+            color: white;
+          }
+        }
+      }
+    }
+    .order-block {
+      height: .34rem;
+      line-height: .34rem;
+      font-size: .13rem;
+      .block-title {
+        position: relative;
+        padding-left: .08rem;
+        border-bottom: 1px solid lightgray;
+        .ghBook {
+          font-size: .20rem;
+          color: #999;
+        }
+        span {
+          margin-left: .1rem;
+        }
+        a {
+          position: absolute;
+          right: .03rem;
+          top: 0;
+          color: #999;
+          height: .34rem;
+          line-height: .34rem;
+          text-align: center;
+          font-size: .13rem;
+          .ghArrow {
+            font-size: .20rem;
+          }
+        }
+      }
+
+    }
+    .block-content {
+      width: 3.2rem;
+      display: flex;
+      .block-item {
+        display: inline-block;
+        padding: .1rem 0;
+        width: .8rem;
+        height: .5rem;
+        text-align: center;
+        i {
+          font-size: .20rem;
+        }
+        span {
+          display: block;
+          font-size: .12rem;
+          color: #666;
+        }
+      }
+
+    }
+    .block-fond {
+      width: 3.2rem;
+      line-height: .35rem;
+      .font-title {
+        width: 3.2rem;
+        height: .35rem;
+        line-height: .35rem;
+        padding-left: .08rem;
+        box-sizing: border-box;
+        border-bottom: .01rem solid lightgray;
+        i {
+          font-size: .2rem;
+        }
+        span {
+          color: #333;
+          margin-left: .10rem;
+          font-size: .14rem;
+        }
+      }
+      .fond-content {
+        width: 3.2rem;
+        display: flex;
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          span {
+            font-size: .13rem;
+            color: gray;
+          }
+        }
+      }
+    }
+    .fill{
+      width: 3.2rem;
+      height: .1rem;
+      background: #f2f2f2;
+    }
+    .block-list {
+      margin-top: .1rem;
+      width: 3.2rem;
+      height: 1.7rem;
+      ul {
+        li {
+          display: block;
+          text-decoration: none;
+          color: #333;
+          padding-left: .08rem;
+          border-bottom: .01rem solid lightgray;
+          height: .34rem;
+          line-height:.34rem;
+          font-size: .13rem;
+          position: relative;
+          i {
+            font-size: .2rem;
+          }
+          span {
+            margin-left: .10rem;
+          }
+          .rightArrow {
+            position: absolute;
+            right: .05rem;
+            font-size: .2rem;
+          }
+        }
+      }
+    }
+    .hint{
+      padding: .2rem;
+      background: #f2f2f2;
+      font-size: .11rem;
+    }
+  }
+}
