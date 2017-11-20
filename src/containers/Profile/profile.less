@@ -1,13 +1,18 @@
 @H:.38rem;
 .profile {
   width: 3.2rem;
+  overflow: hidden;
+  /*i标签的边框阴影*/
+  i{
+    text-shadow: 1px 1px 1px  #bbbbbb;
+  }
   .head-title {
     position: relative;
     top:0;
     width: 3.2rem;
     height: @H;
     line-height: @H;
-    background: #ed145b;
+    background-image: linear-gradient(-204deg,#FD465F 0,#FC5E9F 100%);
     font-size: .14rem;
     color: white;
     text-align: center;
@@ -32,7 +37,7 @@
       position: absolute;
       right: .05rem;
       top: 0;
-      font-size: .22rem;
+      font-size: .30rem;
     }
   }
   .wrapper{
@@ -41,10 +46,11 @@
     top: .38rem;
     font-size: .18rem;
     overflow-y: scroll;
+    background:white;
     .user-unlogin {
       padding-top: .1rem;
       box-sizing: border-box;
-      background: linear-gradient(-204deg, #FD465F 0, #FC5E9F 100%);
+      background-image: linear-gradient(-204deg,#FD465F 0,#FC5E9F 100%);
       .userImg {
         display: block;
         margin: 0 auto;
@@ -57,7 +63,6 @@
       .operation {
         margin: 0 .5rem;
         .operationItem {
-          width: 100%;
           padding:.1rem;
           text-align: center;
           .signUp, .login {
@@ -107,13 +112,16 @@
       width: 3.2rem;
       display: flex;
       .block-item {
-        display: inline-block;
+        display: flex;
+        justify-content: center;/*水平轴上的内容以中心对齐*/
+        flex-direction: column;/*子元素的排列方式为竖直方向为准*/
+        align-items:center;/*子元素的垂直方向上居中对齐*/
         padding: .1rem 0;
         width: .8rem;
         height: .5rem;
-        text-align: center;
         i {
-          font-size: .20rem;
+          color: #666;
+          font-size: .24rem;
         }
         span {
           display: block;
@@ -167,6 +175,8 @@
       width: 3.2rem;
       height: 1.7rem;
       ul {
+        width: 3.2rem;
+        height: 1.7rem;
         li {
           display: block;
           text-decoration: none;
@@ -181,7 +191,7 @@
             font-size: .2rem;
           }
           span {
-            margin-left: .10rem;
+            margin-left: .1rem;
           }
           .rightArrow {
             position: absolute;
@@ -189,11 +199,14 @@
             font-size: .2rem;
           }
         }
+        .cancel{
+          border-bottom: none;
+        }
       }
     }
     .hint{
-      padding: .2rem;
-      background: #f2f2f2;
+      padding: .20rem;
+      background:#f2f2f2;
       font-size: .11rem;
     }
   }
