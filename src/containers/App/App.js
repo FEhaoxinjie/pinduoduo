@@ -7,8 +7,15 @@ import Demo from "../Demo/Demo";
 import Cart from "../Cart/Cart";
 import Yiqituan from "../Yiqituan/Yiqituan";
 import Profile from "../Profile/Profile";
-
+import test from '../../api/test';
 export default class App extends Component {
+    componentDidMount() {
+        test('/api/cartlist', {
+            tel: 13333333333,
+            data: {title: '意大利款中空男鞋', style: '洒红色 40', count: 1, price: 35, initPrice: 35}
+        }).then(res=>console.log(res))
+    }
+
     render() {
         return (
             <Router>
