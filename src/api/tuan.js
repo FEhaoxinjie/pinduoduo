@@ -1,5 +1,4 @@
 const HOST = 'http://localhost:3000';
-
 export default function getTuan(url) {
     return fetch(HOST + url, {
         method: 'get',
