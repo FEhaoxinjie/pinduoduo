@@ -227,15 +227,29 @@ app.use(function (req, res, next) {
         })
     });
     app.get('/api/gethomelist', (req, res) => {
-        let {offset=0,limit=10} = url.parse(req.url, true).query;
-        getHomeGoods(data=>{
-            if(parseFloat(offset)>=data.item_list.length){
+        let {offset = 0, limit = 10} = url.parse(req.url, true).query;
+        getHomeGoods(data => {
+            if (parseFloat(offset) >= data.length) {
                 res.send({
-                    code:100,
-                    error:'没有更多数据了'
+                    code: 100,
+                    error: '没有更多数据了'
                 })
-            }else{
-                let goodsList=data.item_list.splice(parseFloat(offset),parseFloat(limit)+parseFloat(offset));
+            } else {
+                let goodsList = data.slice(parseFloat(offset), parseFloat(limit) + parseFloat(offset));
+                console.log(parseFloat(offset) + parseFloat(limit) ,data.length);
+                if (parseFloat(offset) + parseFloat(limit) >= data.length) {
+                    res.send({
+                        code: 200,
+                        isMore: 0,
+                        data: goodsList
+                    })
+                } else {
+                    res.send({
+                        code: 200,
+                        isMore: 1,
+                        data: goodsList
+                    })
+                }
             }
         })
     })
