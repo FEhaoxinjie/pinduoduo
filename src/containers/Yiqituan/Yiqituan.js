@@ -1,31 +1,19 @@
 import React, {Component} from 'react';
 import './index.less'
+import getTuan from '../../api/tuan';
 export default class Yiqituan extends Component {
+    componentDidMount(){
+        getTuan('/api/tuan?offset=0&limit=5').then(res=>{
+            this.setState({
+                list:[...res.data.list]
+            })
+        })
+    }
     constructor() {
         super();
-        this.state = {
-            list: [
-                {
-                    id: 1,
-                    url: 'http://mp5.jmstatic.com/product/003/961/3961054_std/3961054_1000_1000.jpg?v=1509955630&imageView2/2/w/440/q/90',
-                    comments: 345,
-                    title: '【手机专享】40片装暖贴暖宝宝贴暖身贴发热贴',
-                    price: {
-                        prezhe: 45.00,
-                        afterzhe: 42.00,
-                        tuan: 35.00
-                    },
-
-                }
-            ]
-        };
+        this.state = {list:[]};
 
     }
-
-    componentDidMount() {
-
-    }
-
     render() {
         return (
             <section className="product-items">
