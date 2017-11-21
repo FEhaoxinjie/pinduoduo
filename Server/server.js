@@ -158,6 +158,7 @@ app.use(function (req, res, next) {
                     return item;
                 }
             });
+            if(!cartList) cartList=[];
             userCart = cartList.find(item => item.tel == cartList.tel);
             if (!userCart) {
                 userCart = {
@@ -165,30 +166,31 @@ app.use(function (req, res, next) {
                     cartList: []
                 }
             }
-            console.log(userCart);
             addCart(cartList, {code: 200, data: userCart.cartList}, data => res.send(data))
         });
 
     });
     app.get('/api/cartlist', (req, res) => {
-        let query = req.body;
+        let query = url.parse(req.url,true).query;
         getCartList(data => {
-            let cartList = JSON.stringify(data);
+            let cartList = JSON.parse(data);
             let userCart = cartList.find(item => {
-                return item.tel = query.tel
+                return item.tel == query.tel
             })
             if (!userCart) {
                 userCart = {
                     tel: query.tel,
                     data: []
-                }
+                };
+                res.send({code: 200, data:[]})
+
+            }else{
+                res.send({code: 200, data: userCart.cartList})
             }
-            res.send({code: 200, data: userCart.cartList})
         })
     });
     app.get('/api/tuan', (req, res) => {
-        let {offset = 0, limit = 5} = url.parse(req.url,true).query;
-        console.log(req.body);
+        let {offset = 0, limit = 5} = url.parse(req.url, true).query;
         if (isNaN(offset) || isNaN(limit)) {
             res.send({
                 code: 100,
@@ -203,7 +205,6 @@ app.use(function (req, res, next) {
         } else {
             isMore = 1;
         }
-        console.log(isMore,code,offset,limit);
         res.send({
             code,
             data: {

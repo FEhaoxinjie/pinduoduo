@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
+import HomeGoods from "../../components/HomeGoods/HomeGoods";
 export default class Home extends Component{
     render(){
         return (
             <div>
-                这是首页
+                <ul>
+                    <HomeGoods/>
+                </ul>
             </div>
         )
     }
