@@ -1,48 +1,4 @@
 {"nav": {
-    "tab_online_name": "\u4eca\u65e510\u70b9\u4e0a\u65b0",
-    "tab_online_desc": "",
-    "tab_online_image": {
-      "on_image": {
-        "320": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/formalon.png?20160112&imageView2\/2\/w\/320\/q\/90",
-        "480": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/formalon.png?20160112&imageView2\/2\/w\/480\/q\/90",
-        "640": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/formalon.png?20160112&imageView2\/2\/w\/640\/q\/90",
-        "800": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/formalon.png?20160112&imageView2\/2\/w\/800\/q\/90"
-      },
-      "off_image": {
-        "320": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/formaloff3.png?20160307&imageView2\/2\/w\/320\/q\/90",
-        "480": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/formaloff3.png?20160307&imageView2\/2\/w\/480\/q\/90",
-        "640": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/formaloff3.png?20160307&imageView2\/2\/w\/640\/q\/90",
-        "800": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/formaloff3.png?20160307&imageView2\/2\/w\/800\/q\/90"
-      },
-      "on_color": "#FE4070",
-      "off_color": "#777777"
-    },
-    "tab_preshow_name": "\u660e\u65e510\u70b9\u9884\u544a",
-    "tab_preshow_desc": "",
-    "tab_preshow_num": 85,
-    "tab_preshow_image": {
-      "on_image": {
-        "320": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/preon.png?20160112&imageView2\/2\/w\/320\/q\/90",
-        "480": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/preon.png?20160112&imageView2\/2\/w\/480\/q\/90",
-        "640": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/preon.png?20160112&imageView2\/2\/w\/640\/q\/90",
-        "800": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/preon.png?20160112&imageView2\/2\/w\/800\/q\/90"
-      },
-      "off_image": {
-        "320": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/preoff3.png?20160307&imageView2\/2\/w\/320\/q\/90",
-        "480": "http:\/\/mp6.jmstatic.com\/mobile\/icon\/preoff3.png?20160307&imageView2\/2\/w\/480\/q\/90",
-        "640": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/preoff3.png?20160307&imageView2\/2\/w\/640\/q\/90",
-        "800": "http:\/\/mp5.jmstatic.com\/mobile\/icon\/preoff3.png?20160307&imageView2\/2\/w\/800\/q\/90"
-      },
-      "on_color": "#FE4070",
-      "off_color": "#777777"
-    }
-  },
-  "act_icon_map": {
-    "add_cart": "http:\/\/p0.jmstatic.com\/mobile\/api\/icon\/addcart_single.png",
-    "add_cart_plus": "http:\/\/p0.jmstatic.com\/mobile\/api\/icon\/addcart_single_plus.png",
-    "add_wish": "http:\/\/p0.jmstatic.com\/mobile\/api\/icon\/addwish.png",
-    "add_wish_plus": "http:\/\/p0.jmstatic.com\/mobile\/api\/icon\/addwish_plus.png"
-  },
   "item_list": [
     {
       "type": "global_deal",
@@ -2097,5 +2053,4 @@
   "page_key": 1511228040,
   "backup": "",
   "call": "http:\/\/s.mobile.jumei.com\/api\/v1\/deal\/dealactlist?card_id=4057&page=2&page_key=1511228040&platform=wap&client_v=1.0&user_tag_id=0&source=touch&site=bj",
-  "timestamp": "2017-11-21 09:35:18"
-}
+  "timestamp": "2017-11-21 09:35:18"}}
