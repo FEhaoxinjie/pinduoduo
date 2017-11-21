@@ -77,6 +77,17 @@ function addCart(cart, userCart, cb) {
     })
 }
 
+function getHomeGoods(cb) {
+    fs.readFile('./mock/homeGoods.json', 'utf8', function (err, data) {
+        if (err) {
+            res.send({code: 100, error: '获取商品列表失败'})
+        } else {
+            data = JSON.parse(data);
+            cb && cb(data);
+        }
+    })
+}
+
 let app = express();
 app.use(bodyParser.json());
 app.use(session({
@@ -148,13 +159,13 @@ app.use(function (req, res, next) {
         let userCart;
         getCartList(data => {
             let cartList = JSON.parse(data);
-            if(!cartList) cartList=[];
+            if (!cartList) cartList = [];
             cartList = cartList.map(item => {
                 if (cart.tel == item.tel) {
                     return {
                         tel: cart.tel,
                         cartList: cart.data
-                };
+                    };
                 } else {
                     return item;
                 }
@@ -163,7 +174,7 @@ app.use(function (req, res, next) {
             userCart = cartList.find(item => item.tel == cartList.tel);
             if (!userCart) {
                 userCart = {
-                    code: 200,
+                    tel: cart.tel,
                     cartList: cart.data
                 }
                 cartList.push(userCart);
@@ -173,7 +184,7 @@ app.use(function (req, res, next) {
 
     });
     app.get('/api/cartlist', (req, res) => {
-        let query = url.parse(req.url,true).query;
+        let query = url.parse(req.url, true).query;
         getCartList(data => {
             let cartList = JSON.parse(data);
             let userCart = cartList.find(item => {
@@ -184,9 +195,9 @@ app.use(function (req, res, next) {
                     tel: query.tel,
                     data: []
                 };
-                res.send({code: 200, data:[]})
+                res.send({code: 200, data: []})
 
-            }else{
+            } else {
                 res.send({code: 200, data: userCart.cartList})
             }
         })
@@ -214,8 +225,20 @@ app.use(function (req, res, next) {
                 list: flashSales.list.slice(parseFloat(offset), parseFloat(limit))
             }
         })
+    });
+    app.get('/api/gethomelist', (req, res) => {
+        let {offset=0,limit=10} = url.parse(req.url, true).query;
+        getHomeGoods(data=>{
+            if(parseFloat(offset)>=data.item_list.length){
+                res.send({
+                    code:100,
+                    error:'没有更多数据了'
+                })
+            }else{
+                let goodsList=data.item_list.splice(parseFloat(offset),parseFloat(limit)+parseFloat(offset));
+            }
+        })
     })
-
 });
 
 
