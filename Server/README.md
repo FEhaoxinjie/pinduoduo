@@ -125,8 +125,8 @@ data:{
     
     data:[
     
-      {title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35,initPrice:35},
-      {title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35,initPrice:55}
+      {id:'0',title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35,initPrice:35},
+      {id:'0',title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35,initPrice:55}
     
     ]
     
@@ -142,8 +142,8 @@ data:{
     
     list:[
         
-        {title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35},
-        {title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35}
+        {id:0,title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35},
+        {id:0,title:'意大利款中空男鞋',style:'洒红色 40',count:1,price:35}
         
     ]
 
