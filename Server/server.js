@@ -148,23 +148,25 @@ app.use(function (req, res, next) {
         let userCart;
         getCartList(data => {
             let cartList = JSON.parse(data);
+            if(!cartList) cartList=[];
             cartList = cartList.map(item => {
                 if (cart.tel == item.tel) {
                     return {
                         tel: cart.tel,
                         cartList: cart.data
-                    };
+                };
                 } else {
                     return item;
                 }
             });
-            if(!cartList) cartList=[];
+
             userCart = cartList.find(item => item.tel == cartList.tel);
             if (!userCart) {
                 userCart = {
                     code: 200,
-                    cartList: []
+                    cartList: cart.data
                 }
+                cartList.push(userCart);
             }
             addCart(cartList, {code: 200, data: userCart.cartList}, data => res.send(data))
         });
